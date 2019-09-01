@@ -56,28 +56,28 @@ object ReactiveDB {
   def getByASIN(asin: String) = {
     val collection = productCollection()
     val query = BSONDocument("asin" -> asin)
-    val rs = collection.find(query).cursor[AmazonMeta]
+    val rs = collection.find(query).cursor[AmazonMeta]()
     rs
   }
 
   def getByGroup(group: String) = {
     val collection = productCollection()
     val query = BSONDocument("group" -> group)
-    val rs = collection.find(query).cursor[AmazonMeta]
+    val rs = collection.find(query).cursor[AmazonMeta]()
     rs
   }
 
   def getAll(asin: String) = {
     val collection = productCollection()
     val query = BSONDocument.empty
-    val rs = collection.find(query).cursor[AmazonMeta]
+    val rs = collection.find(query).cursor[AmazonMeta]()
     rs
   }
 
   def allProducts() = {
     val query = BSONDocument.empty
     val collection = productCollection()
-    val cursor = collection.find(query).cursor[AmazonMeta]
+    val cursor = collection.find(query).cursor[AmazonMeta]()
     cursor
   }
 
@@ -85,7 +85,7 @@ object ReactiveDB {
     val query = BSONDocument.empty
     val sortCriteria = BSONDocument("overallReview.averageRating" -> -1)
     val collection = productCollection()
-    val cursor = collection.find(query).sort(sortCriteria).cursor[AmazonMeta]
+    val cursor = collection.find(query).sort(sortCriteria).cursor[AmazonMeta]()
     cursor
   }
 
@@ -93,7 +93,7 @@ object ReactiveDB {
     val query = BSONDocument.empty
     val sortCriteria = BSONDocument("overallReview.total" -> -1)
     val collection = productCollection()
-    val cursor = collection.find(query).sort(sortCriteria).cursor[AmazonMeta]
+    val cursor = collection.find(query).sort(sortCriteria).cursor[AmazonMeta]()
     cursor
   }
 
@@ -141,7 +141,7 @@ object ReactiveDB {
   def getCustomerByID(id: String) = {
     val collection = customerCollection()
     val query = BSONDocument("id" -> id)
-    val rs = collection.find(query).cursor[Customer]
+    val rs = collection.find(query).cursor[Customer]()
     rs
   }
 
@@ -149,7 +149,7 @@ object ReactiveDB {
     val query = BSONDocument.empty
     val sortCriteria = BSONDocument("overallReview.total" -> -1)
     val collection = reviewsCollection()
-    val cursor = collection.find(query).sort(sortCriteria).cursor[AmazonMeta]
+    val cursor = collection.find(query).sort(sortCriteria).cursor[AmazonMeta]()
     cursor
   }
 
@@ -182,14 +182,14 @@ object ReactiveDB {
   def getAmazonCustomersForCustomerNumber(number: Int) = {
     val collection = customerMappingCollection()
     val query = BSONDocument("customer_number" -> number)
-    val rs = collection.find(query).cursor[CustomerMapping]
+    val rs = collection.find(query).cursor[CustomerMapping]()
     rs
   }
 
   def getCustomerNumber(custID: String): Int = {
     val collection = customerMappingCollection()
     val query = BSONDocument("_id" -> custID)
-    val cursor = collection.find(query).cursor[CustomerMapping]
+    val cursor = collection.find(query).cursor[CustomerMapping]()
     val result = cursor.headOption.map(_.map(_.customerNumber.toInt).getOrElse(0))
     Await.result(result, 10 seconds)
   }
