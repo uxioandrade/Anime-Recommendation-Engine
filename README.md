@@ -1,0 +1,3 @@
+Run
+
+    $ sbt package run
