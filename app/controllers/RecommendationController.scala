@@ -13,13 +13,20 @@ import javax.inject._
 
 
 @Singleton
-class RecommendationController @Inject()(recommender: Recommender)
+class RecommendationController  @Inject()(recommender: Recommender)
 extends Controller {
 
   def topRated() = Action.async {
     val itemsF = ReactiveDB.topRatedProducts.collect[Seq](100, ReactiveDB.handleProductsError())
     itemsF map { items =>
       Ok(views.html.top_rated_products(items))
+    }
+  }
+
+  def topRatedAnimes() = Action.async {
+    val itemsF = ReactiveDB.topRatedAnimes.collect[Seq](100, ReactiveDB.handleAnimeError())
+    itemsF map { items =>
+      Ok(views.html.top_rated_animes(items))
     }
   }
 
