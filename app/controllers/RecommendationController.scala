@@ -6,16 +6,15 @@ import play.api.mvc.Action
 import play.api.mvc.Controller
 import util.Database
 import util.ReactiveDB
-import play.api.libs.json.Json
-import play.api.libs.json.JsValue
-import util.Recommender
+import play.api.libs.json._
+//import util.Recommender
 import javax.inject._
 
 
 @Singleton
 class RecommendationController  @Inject()(recommender: Recommender)
 extends Controller {
-
+/*
   def topRated() = Action.async {
     val itemsF = ReactiveDB.topRatedProducts.collect[Seq](100, ReactiveDB.handleProductsError())
     itemsF map { items =>
@@ -61,5 +60,5 @@ extends Controller {
       Ok(Json.toJson(items))
     }
   }
-
+*/
 }
