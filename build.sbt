@@ -1,25 +1,25 @@
-name := "recommender-system"
+name := """anime-recommender-system"""
 
 version := "1.0-SNAPSHOT"
 
-scalaVersion := "2.12.0"
+lazy val root = (project in file(".")).enablePlugins(PlayScala).settings(
+  watchSources ++= (baseDirectory.value / "public/frontend" ** "*").get
+)
 
-scalaVersion in ThisBuild := "2.12.0"
+resolvers += Resolver.sonatypeRepo("snapshots")
 
+scalaVersion := "2.12.8"
 val sparkVersion = "2.4.0"
 val akkaVersion = "2.3.6"
-
 val reactiveMongoVer = "0.18.5"
-val playVer = "2.7.1" // or greater
-
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play-json" % playVer,
+  guice,
+  "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.2" % Test,
+  "com.h2database" % "h2" % "1.4.199",
   jdbc,
   ehcache,
   ws,
-  guice,
   "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.8.8",
   "com.fasterxml.jackson.core" % "jackson-core" % "2.8.8",
   "com.fasterxml.jackson.core" % "jackson-databind" % "2.8.8",
@@ -45,8 +45,45 @@ libraryDependencies ++= Seq(
   "com.sksamuel.elastic4s" % "elastic4s-core_2.12" % "5.0.0",
   "org.elasticsearch.client" % "transport" % "5.0.0",
   "com.typesafe.akka" %% "akka-actor" % akkaVersion,
-"com.typesafe.akka" %% "akka-slf4j" % akkaVersion,
-"com.typesafe.akka" %% "akka-stream" % akkaVersion
+  "com.typesafe.akka" %% "akka-slf4j" % akkaVersion,
+  "com.typesafe.akka" %% "akka-stream" % akkaVersion,
+
+  "org.postgresql" % "postgresql" % "42.2.5" % "jooq",
+  "postgresql" % "postgresql" % "9.1-901.jdbc4",
+  "org.jooq" % "jooq" % "3.11.0",
+  "org.jooq" % "jooq-codegen" % "3.11.0",
+  "org.jooq" % "jooq-meta" % "3.11.0",
 )
 
+enablePlugins(JooqCodegen)
 
+jooqOrganization := "org.jooq"
+
+jooqVersion := "3.11.0"
+
+jooqCodegenConfig := {
+  
+  <configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.11.0.xsd">
+    <jdbc>
+      <driver>org.postgresql.Driver</driver>
+      <url>jdbc:postgresql://localhost:5432/animelist</url>
+      <user>postgres</user>
+      <password>admin</password>
+    </jdbc>
+    <generator>
+      <name>org.jooq.codegen.ScalaGenerator</name>
+      <database>
+        <name>org.jooq.meta.postgres.PostgresDatabase</name>
+        <inputSchema>public</inputSchema>
+        <includes>.*</includes>
+        <excludes></excludes>
+      </database>
+      <target>
+        <packageName>generated</packageName>
+        <directory>app/models/jooq</directory>
+      </target>
+    </generator>
+  </configuration>
+}
+
+jooqCodegenStrategy := CodegenStrategy.IfAbsent
