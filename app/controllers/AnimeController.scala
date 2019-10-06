@@ -34,8 +34,8 @@ extends Controller {
     Ok(anime)
   }
 
-  def get(number: Int) = Action {
-//    val itemsF = ReactiveDB.getOneCustomerByNumber(number,recommender)
-    Ok
+  def getTopRatedAnimesByGenre(genre: String) = Action {
+    val animes = animeService.getTopRatedAnimesByGenre(genre)
+    Ok(new JsArray(animes))
   }
 }
