@@ -5,8 +5,9 @@
 # Serve index page from public directory
 GET     /                           controllers.FrontendController.index()
 
+GET     /anime/:anime               controllers.AnimeController.getAnime(anime)
 GET     /users/:user                controllers.UserController.getUser(user)
-
+GET     /animes/all                 controllers.AnimeController.list()
 GET     /animes/toprated            controllers.AnimeController.getTopRatedAnimes()
 
 +nocsrf
