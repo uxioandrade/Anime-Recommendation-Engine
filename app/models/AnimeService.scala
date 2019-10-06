@@ -17,18 +17,26 @@ class AnimeService @Inject()() {
     val dbContext: DSLContext = Driver.getDbContext
 
     def getAllAnimes(): IndexedSeq[JsObject] = {
-        val ret = dbContext.fetch(ANIME)
+        val ret = dbContext.selectFrom(ANIME).limit(100).fetch()
         val animes = ret.asScala.map(anime => new Anime(anime))
         animes.map(anime => anime.toJson).toIndexedSeq
     }       
 
     def getTopRatedAnimes(): IndexedSeq[JsObject] = {
-        val ret = dbContext.selectFrom(ANIME).orderBy(ANIME.SCORE).limit(10).fetch()
+        val ret = dbContext.selectFrom(ANIME).orderBy(ANIME.SCORE.desc()).limit(10).fetch()
         val animes = ret.asScala.map(anime => new Anime(anime))
-        println(animes)
         animes.map(anime => anime.toJson).toIndexedSeq
     }
 
+    def getAnimeById(id: Long): JsObject = {
+        val ret = dbContext
+            .selectFrom(ANIME)
+            .where(ANIME.ID equal id)
+            .fetch
+        val anime = ret.map(anime => new Anime(anime))
+        anime.get(0).toJson
+    }
+ 
     def getSeqOfAnimesWithTheirId(animeIds: Seq[Long]): Map[Long,(String,String)] = {
         animeIds.map(x => {
             val anime = dbContext
@@ -40,5 +48,4 @@ class AnimeService @Inject()() {
         }).toMap
     }
 
-    
 }   
