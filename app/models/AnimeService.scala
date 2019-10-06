@@ -1,6 +1,5 @@
 package model
 
-
 import javax.inject._
 import org.jooq.{SQLDialect, DSLContext}
 import org.jooq.impl.DSL
@@ -37,6 +36,7 @@ class AnimeService @Inject()() {
         anime.get(0).toJson
     }
  
+    //TODO: this should be done with SQL's IN clause
     def getSeqOfAnimesWithTheirId(animeIds: Seq[Long]): Map[Long,(String,String)] = {
         animeIds.map(x => {
             val anime = dbContext
