@@ -4,8 +4,6 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import play.api.mvc.Action
 import play.api.mvc.Controller
-import util.Database
-import util.ReactiveDB
 import model.UserService
 import model.RecommendationService
 import model.AnimeService
@@ -53,9 +51,8 @@ extends Controller {
         BadRequest("Error when retrieving this user's recommendations")
       },
         form => {
-          val user = "karthiga"
-          //val userId = usersService.getUserIdByUsername(user)
-          val recommendations = SparkAlsUtility.makePrediction(0)
+          val userId = usersService.getUserIdByUsername(form)
+          val recommendations = SparkAlsUtility.makePrediction(userId)
           val recommendationsIds = recommendations.map(x => x.product.toLong).toList
           val recommendationsMap = recommendations.map(
             x =>
