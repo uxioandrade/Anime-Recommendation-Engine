@@ -27,6 +27,12 @@ class AnimeService @Inject()() {
         animes.map(anime => anime.toJson).toIndexedSeq
     }
 
+    def getTopRatedAnimesByGenre(genre: String): IndexedSeq[JsObject] = {
+        val ret = dbContext.selectFrom(ANIME).where(ANIME.GENRE contains genre).orderBy(ANIME.SCORE.desc()).limit(10).fetch()
+        val animes = ret.asScala.map(anime => new Anime(anime))
+        animes.map(anime => anime.toJson).toIndexedSeq
+    }
+
     def getAnimeById(id: Long): JsObject = {
         val ret = dbContext
             .selectFrom(ANIME)
