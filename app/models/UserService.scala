@@ -17,14 +17,14 @@ class UserService @Inject()() {
     def getOneUser() = {
         val ret = dbContext.fetch(VIEWER)
         val user = ret.asScala.map(new User(_))
-        println(user)
+        user
     }
     
     def getUserIdByUsername(username: String): Long = {
         val ret = dbContext
         .select(VIEWER.ID)
         .from(VIEWER)
-        .where(VIEWER.USERNAME equals username)
+        .where(VIEWER.USERNAME equal username)
         .fetchOne()
 
         Option(ret.getValue(0)).map(_.asInstanceOf[Long]).getOrElse(0)
