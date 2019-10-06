@@ -1,9 +1,9 @@
-[![MIT License][license-badge]][LICENSE]
-
 # Anime Recommendation Engine
 
 > The purpose of this project is to implement different recommendation algorithms and integrate them in a web app.
  
+## Short Demo
+
 ![Gif](https://media.giphy.com/media/d9O8doAiylGW9jvgEM/giphy.gif)
 
 ## Version Summary
