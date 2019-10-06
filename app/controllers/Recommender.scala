@@ -2,7 +2,6 @@ package controllers
 
 import javax.inject._
 
-import model.{ AmazonMeta, CustomerMapping }
 import scala.Option.option2Iterable
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -19,7 +18,6 @@ import scala.concurrent._
 import scala.concurrent.duration._
 import com.twitter.algebird.TopCMS
 import reactivemongo.bson.BSONString
-import model.CustomerMapping
 import play.Logger
 import play.libs.Json
 import play.api.libs.ws._
@@ -130,6 +128,6 @@ class Recommender @Inject()(ws: WSClient){
     }
 
     Await.ready(tpF, 1 minute)
-  }*/
-
+  }
+*/
 }
