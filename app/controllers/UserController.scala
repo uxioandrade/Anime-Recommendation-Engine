@@ -18,7 +18,6 @@ extends Controller {
 
 
 def getUser(user: String) = Action {
-      println("CHECKPOINT 1")
       userService.getOneUser()
       Ok
   }
