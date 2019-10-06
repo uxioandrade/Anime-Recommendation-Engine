@@ -2,26 +2,18 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-GET   /                                                 controllers.Application.index
-GET   /animes                                           controllers.AnimeController.list
-GET   /customers                                        controllers.CustomerController.list
-GET   /customer/:id                                     controllers.CustomerController.get(id: Int)
-GET   /products                                         controllers.ProductController.list
-GET   /product/groups/                                  controllers.ProductController.getGroups
-GET   /product/group/:group                             controllers.ProductController.getForGroup(group: String)
-GET   /product/asin/:asin                               controllers.ProductController.get(asin: String)
-GET   /recommendation/topRated                          controllers.RecommendationController.topRated
-GET   /recommendation/topRatedAnimes                    controllers.RecommendationController.topRatedAnimes
-GET   /recommendation/mostPopular                       controllers.RecommendationController.mostPopular
+# Serve index page from public directory
+GET     /                           controllers.FrontendController.index()
 
-GET   /recommendation/trends                            controllers.RecommendationController.trends
+GET     /users/:user                controllers.UserController.getUser(user)
 
-GET   /recommendation/trending/product/:year/:month/    controllers.RecommendationController.trendingProduct(year: Int, month: Int)
-GET   /recommendation/trending/customer/:year/:month/   controllers.RecommendationController.trendingCustomer(year: Int, month: Int)
-GET   /recommendation/for/customer/:id/                 controllers.RecommendationController.recommendationsForCustomer(id: String)
+GET     /animes/toprated            controllers.AnimeController.getTopRatedAnimes()
 
-# GET   /search/                                          controllers.SearchController.searchProducts()
++nocsrf
+POST     /recommendations/:user      controllers.RecommendationController.getRecommendationForUser(user)
 
-# Map static resources from the /public folder to the /assets URL path
-GET   /assets/*file                                     controllers.Assets.at(path="/public", file)
+# An example route (Prefix all API routes with apiPrefix defined in application.conf)
+GET     /api/summary                controllers.HomeController.appSummary
+
+# Serve static assets under public directory
+GET     /*file                      controllers.FrontendController.assetOrDefault(file)
