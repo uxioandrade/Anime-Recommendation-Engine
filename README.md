@@ -4,7 +4,7 @@
 
 > The purpose of this project is to implement different recommendation algorithms and integrate them in a web app.
  
-[Gif](https://media.giphy.com/media/d9O8doAiylGW9jvgEM/giphy.gif)
+![Gif](https://media.giphy.com/media/d9O8doAiylGW9jvgEM/giphy.gif)
 
 ## Version Summary
 
