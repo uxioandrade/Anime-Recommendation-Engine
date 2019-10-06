@@ -1,0 +1,27 @@
+.anime-info-list {
+    float: left; 
+    list-style: none; 
+    margin-right: 8px; 
+    border: 2px solid; 
+    padding: 4px; 
+}
+
+.anime-info-list li {
+    width: 100%;
+    display: table-cell;
+    list-style-type: none;
+    margin: 10px;
+    vertical-align: middle;
+}
+
+h1{
+    background-color: rgb(59, 58, 58);
+    color: rgb(228, 216, 216);
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-family: "Ninja Naruto", Arial; 
+    font-weight: bold; 
+    letter-spacing: -1px; 
+    line-height: 1; 
+    text-align: center; 
+    vertical-align: middle;
+}

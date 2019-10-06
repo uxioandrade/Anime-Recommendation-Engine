@@ -1,0 +1,64 @@
+.anime-list{
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 5%;
+    margin-right: 5%;
+    flex-wrap: wrap;
+    width:90%;
+    background-color: white;
+    border:1px solid black;
+}
+
+.anime-list li {
+  list-style: none;
+  display: block;
+  border: 1px #e1e4e8 solid;
+  border-bottom: 1px solid #eee;
+  border-radius: 3px;
+  margin: 5px 40px 5px 0;
+  border: 3px black;
+  padding: 0 10px 40px 10px;
+  color: rgb(126, 124, 124);
+}
+
+.anime-list table{
+  width:100%;
+  border:1px solid black;  
+}
+
+.anime-list th {
+  text-align: left;
+}
+
+.anime-list td {
+  text-align: left;
+}
+
+.columnPoster {
+  width: 15%;
+}
+
+.columnTitle {
+  width: 40%;
+}
+
+.columnScore {
+  width: 10%;
+  text-align: center;
+}
+
+.columnScoredBy{
+  width: 15%;
+  text-align: center;
+}
+
+.anime-list tr:nth-child(even) {background: #CCC}
+.anime-.ist tr:nth-child(odd) {background: #FFF}
+
+.anime-table-row {
+  height: 2vh;
+}
+
+.anime-card{
+
+}
