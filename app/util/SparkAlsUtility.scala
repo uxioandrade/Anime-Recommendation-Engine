@@ -19,7 +19,9 @@ object SparkAlsUtility {
         val sc = new SparkContext(conf)
 
         val model = MatrixFactorizationModel.load(sc,"machineLearningModels/als-model")
-
+        /*println("USER FEATURES")
+        val users = model.userFeatures.map{ case (x,y) => x.toString}
+        users.foreach(println)*/
         val recommendations = model.recommendProducts(userId.toInt, 5)
         recommendations
     }
