@@ -20,15 +20,16 @@ libraryDependencies ++= Seq(
   jdbc,
   ehcache,
   ws,
-  "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.8.8",
-  "com.fasterxml.jackson.core" % "jackson-core" % "2.8.8",
-  "com.fasterxml.jackson.core" % "jackson-databind" % "2.8.8",
+  "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.9.8",
+  "com.fasterxml.jackson.core" % "jackson-core" % "2.9.8",
+  "com.fasterxml.jackson.core" % "jackson-databind" % "2.9.8",
   // "org.scala-lang" % "scala-xml" % "2.11.0-M4",
   "org.apache.spark" %% "spark-core" % sparkVersion,         // Spark
   "org.apache.spark" %% "spark-mllib" % sparkVersion,        // Spark MLLIB
   "org.apache.spark" %% "spark-sql" % sparkVersion,  
   "org.mongodb.spark" %% "mongo-spark-connector" % sparkVersion,
-   
+  "org.apache.hadoop" % "hadoop-client" % "2.7.2",
+   //see https://stackoverflow.com/questions/48590083/guava-dependency-error-for-spark-play-framework-using-scala
   // "com.typesafe.akka" %% "akka-actor" % akkaVersion,         // Akka Actor
   // "com.typesafe.akka" %% "akka-slf4j" % akkaVersion,         // Akka SLF4J
   "com.typesafe.play" %% "anorm" % "2.6.0-M1",  
@@ -47,13 +48,14 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % akkaVersion,
   "com.typesafe.akka" %% "akka-slf4j" % akkaVersion,
   "com.typesafe.akka" %% "akka-stream" % akkaVersion,
-
-  "org.postgresql" % "postgresql" % "42.2.5" % "jooq",
-  "postgresql" % "postgresql" % "9.1-901.jdbc4",
+  "javax.activation" % "javax.activation-api" % "1.2.0",
+  "org.postgresql" % "postgresql" % "42.2.5",
   "org.jooq" % "jooq" % "3.11.0",
   "org.jooq" % "jooq-codegen" % "3.11.0",
   "org.jooq" % "jooq-meta" % "3.11.0",
 )
+
+//dependencyOverrides += "com.google.guava" % "guava" % "15.0"
 
 enablePlugins(JooqCodegen)
 
