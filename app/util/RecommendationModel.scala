@@ -97,6 +97,7 @@ object RecommendationModel {
         println("----------------------------------")
 
         /*
+        TODO: Implement some evaluation metric
         val evaluator = new RegressionEvaluator()
             .setMetricName("rmse")
             .setLabelCol("rating")
