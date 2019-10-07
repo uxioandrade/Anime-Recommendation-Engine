@@ -28,7 +28,7 @@
 # First, you need to navigate to the following datasets:
 * [dataset](https://www.kaggle.com/azathoth42/myanimelist) And download the files `anime_cleaned.csv`,`animelists_cleaned` and `users_cleaned`
 * Save the datasets in a directory named `datasets` in the root directory
-* Now run the scripts `dataset_clenaer.py` and then `clean_images.py` using python3
+* Now run the scripts `dataset_cleaner.py` and then `clean_images.py` using python3
 * Execute the `init_db_docker.sh` file. Uncomment the first lines if you don't have the necessary docker images
 * At this point, you can execute ``sbt run``, which will trigger ``npm run start``
 * Finally, enter the sbt console and run ``util.RecommendationModel``, which will save the ALS model.
